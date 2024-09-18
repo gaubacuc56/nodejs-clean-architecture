@@ -1,0 +1,11 @@
+version: "1"
+
+services:
+  app:
+    container_name: be
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/node_modules

@@ -1,0 +1,11 @@
+// Define the datasource and generator
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./node_modules/.prisma/client"
+  schema   = "./src/infrastructure/db/prisma/schema.prisma"
+}

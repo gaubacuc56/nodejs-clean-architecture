@@ -15,14 +15,14 @@ import { transporter } from "@Application/utils/send-mail";
 import {
     BadRequestException,
     UnauthorizedException,
-} from "@Infrastructure/exceptions/error-handler";
+} from "@Domain/exceptions/error-handler";
 import { User } from "@prisma/client";
 import { RequestBody } from "@Shared/types";
 import { compareSync, hashSync } from "bcrypt";
 import crypto from "crypto";
 import { config } from "@Infrastructure/config";
 import { IAuthService } from "./auth.interface";
-import { IUserRepository } from "@Persistence/repository/user/interface";
+import { IUserRepository } from "@Infrastructure/database/repository/user/interface";
 import { pick } from "@Application/utils/pick";
 import { ISignUpResponse } from "@Application/DTOs/response/auth.res";
 

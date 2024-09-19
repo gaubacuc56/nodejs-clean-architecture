@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 import { NextFunction, Response, Request } from "express";
-import { InternalServerErrorException } from "@Infrastructure/exceptions/error-handler";
-import { HttpException } from "@Infrastructure/exceptions/root";
+import { InternalServerErrorException } from "@Domain/exceptions/error-handler";
+import { HttpException } from "@Domain/exceptions/root";
 
 const handleException = (method: Function) => {
   return async (req: Request, res: Response, next: NextFunction) => {

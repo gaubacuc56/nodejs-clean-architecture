@@ -1,4 +1,4 @@
-import { prismaClient } from "@Persistence/prisma";
+import { prismaClient } from "@Infrastructure/database/prisma";
 import { IUserRepository } from "./interface";
 
 export class UserRepository implements IUserRepository {

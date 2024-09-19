@@ -2,10 +2,10 @@
   "mixers": [
     {
       "input": [
-        "src\\Persistence\\prisma\\base.prisma",
+        "src\\Infrastructure\\database\\prisma\\base.prisma",
         "src\\Domain\\entities\\User.prisma"
       ],
-      "output": "src\\Persistence\\prisma\\schema.prisma"
+      "output": "src\\Infrastructure\\database\\prisma\\schema.prisma"
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { AuthService } from "@Application/features/auth/auth.service";
 import { UserService } from "@Application/features/user/user.service";
-import { UserRepository } from "@Persistence/repository/user";
+import { UserRepository } from "@Infrastructure/database/repository/user";
 
 class ServiceLocator {
   private userService: UserService | null = null;

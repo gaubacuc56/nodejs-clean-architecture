@@ -6,7 +6,7 @@ import {
     REFRESH_TOKEN_EXPIRATION,
 } from "@Domain/common/constant/jwt";
 import { HTTP_MSG } from "@Domain/common/constant/message";
-import { UnauthorizedException } from "@Infrastructure/exceptions/error-handler";
+import { UnauthorizedException } from "@Domain/exceptions/error-handler";
 import { RequestBody } from "@Shared/types";
 
 export const generateAccessToken = async (id: number) => {

@@ -6,8 +6,8 @@ const path = require('path');
 const baseDir = './src';
 const prismixConfigPath = path.join("", 'prismix.config.json');
 const domainEntitiesDir = path.join(baseDir, 'Domain/entities');
-const basePrismaPath = path.join(baseDir, 'Persistence/prisma/base.prisma');
-const outputPrismaPath = path.join(baseDir, 'Persistence/prisma/schema.prisma');
+const basePrismaPath = path.join(baseDir, 'Infrastructure/database/prisma/base.prisma');
+const outputPrismaPath = path.join(baseDir, 'Infrastructure/database/prisma/schema.prisma');
 
 // Get all .prisma files in the domain/entities directory
 const getPrismaFiles = (dir) => {

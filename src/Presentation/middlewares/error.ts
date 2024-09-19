@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { HttpException } from "@Infrastructure/exceptions/root";
+import { HttpException } from "@Domain/exceptions/root";
 import { NextFunction, Response, Request } from "express";
 
 export const errorMiddleware = (

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Joi, { ObjectSchema, ValidationResult } from "joi";
 import { pick } from "@Application/utils/pick";
-import { BadRequestException } from "@Infrastructure/exceptions/error-handler";
+import { BadRequestException } from "@Domain/exceptions/error-handler";
 
 
 type Schema = {

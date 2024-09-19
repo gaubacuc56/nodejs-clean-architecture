@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { AsyncRoute } from "@Infrastructure/server/catchAsync";
-import { UserRepository } from "@Persistence/repository/user";
+import { UserRepository } from "@Infrastructure/database/repository/user";
 import { UserService } from "@Application/features/user/user.service";
 import { UserController } from "@Presentation/controllers/user.controller";
 import { authMiddleware } from "@Presentation/middlewares/auth";

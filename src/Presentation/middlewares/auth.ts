@@ -1,5 +1,5 @@
 import { NextFunction, Response } from "express";
-import { UnauthorizedException } from "@Infrastructure/exceptions/error-handler";
+import { UnauthorizedException } from "@Domain/exceptions/error-handler";
 import { config } from "@Infrastructure/config";
 import { AUTH_ERRORS } from "@Application/common/constant/message";
 import { verifyAuthorizationHeader } from "@Application/utils/jwt";

@@ -9,4 +9,9 @@ export const config = {
   CLIENT_DOMAIN: process.env.CLIENT_DOMAIN || "http://localhost:8000",
   SMTP_HOST: process.env.SMTP_HOST || "",
   SMTP_SECRET_KEY: process.env.SMTP_SECRET_KEY || "",
+  DB_PORT: process.env.DB_PORT || 3306,
+  DB_HOST: process.env.DB_HOST || "",
+  DB_USERNAME: process.env.DB_USERNAME || "",
+  DB_PASSWORD: process.env.DB_PASSWORD || "",
+  DB_SCHEMA: process.env.DB_SCHEMA || "",
 };

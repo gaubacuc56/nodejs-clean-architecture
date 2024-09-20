@@ -16,7 +16,6 @@ import {
     BadRequestException,
     UnauthorizedException,
 } from "@Domain/exceptions/error-handler";
-import { User } from "@prisma/client";
 import { RequestBody } from "@Shared/types";
 import { compareSync, hashSync } from "bcrypt";
 import crypto from "crypto";
@@ -25,6 +24,7 @@ import { IAuthService } from "./auth.interface";
 import { IUserRepository } from "@Infrastructure/database/repository/user/interface";
 import { pick } from "@Application/utils/pick";
 import { ISignUpResponse } from "@Application/DTOs/response/auth.res";
+import { User } from "@Domain/entities/User";
 
 export class AuthService implements IAuthService {
     constructor(private readonly userRepository: IUserRepository) { }

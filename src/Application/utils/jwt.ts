@@ -9,7 +9,7 @@ import { HTTP_MSG } from "@Domain/common/constant/message";
 import { UnauthorizedException } from "@Domain/exceptions/error-handler";
 import { RequestBody } from "@Shared/types";
 
-export const generateAccessToken = async (id: number) => {
+export const generateAccessToken = async (id: string) => {
     const token = jwt.sign(
         {
             userInfo: id,
@@ -20,7 +20,7 @@ export const generateAccessToken = async (id: number) => {
     return token;
 };
 
-export const generateRefreshToken = async (id: number) => {
+export const generateRefreshToken = async (id: string) => {
     const token = jwt.sign(
         {
             userInfo: id,

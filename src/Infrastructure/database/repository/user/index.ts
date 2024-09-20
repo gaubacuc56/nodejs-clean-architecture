@@ -12,7 +12,7 @@ export class UserRepository implements IUserRepository {
     });
   }
 
-  public async findById(id: number) {
+  public async findById(id: string) {
     return await prismaClient.user.findFirst({ where: { id } });
   }
 
@@ -25,7 +25,7 @@ export class UserRepository implements IUserRepository {
   }
 
   public async updateResetKey(
-    id: number,
+    id: string,
     resetKey: string | null,
     resetKeyExpired: Date | null
   ) {
@@ -35,7 +35,7 @@ export class UserRepository implements IUserRepository {
     });
   }
 
-  public async changePassword(id: number, password: string) {
+  public async changePassword(id: string, password: string) {
     await prismaClient.user.update({
       where: { id },
       data: { password },

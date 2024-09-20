@@ -1,5 +1,5 @@
 export interface IFindUserResponse {
-    id: number;
+    id: string;
     name: string;
     email: string;
     createdAt: Date;

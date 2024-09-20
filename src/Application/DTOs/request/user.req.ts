@@ -1,3 +1,3 @@
 export interface IFindUserByIdRequest {
-    id: number;
+    id: string;
 }

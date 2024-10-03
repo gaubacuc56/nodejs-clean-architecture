@@ -5,7 +5,7 @@ import {
 
 } from 'typeorm';
 import { Task } from './Task';
-import { BaseSoftDelete } from '@Infrastructure/database/typeorm/base-entity/base';
+import { BaseSoftDelete } from '@Domain/common/base-entity/base';
 
 @Entity({ name: 'SubTask' })
 export class SubTask extends BaseSoftDelete {

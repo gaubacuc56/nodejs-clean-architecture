@@ -1,5 +1,5 @@
-import { IChangePasswordRequest, IForgotPasswordRequest, ILoginRequest, IResetPasswordRequest, ISignUpRequest } from "@Application/dtos/request/auth.req";
-import { ILoginResponse, IRefreshTokenResponse, ISignUpResponse } from "@Application/dtos/response/auth.res";
+import { IChangePasswordRequest, IForgotPasswordRequest, ILoginRequest, IResetPasswordRequest, ISignUpRequest } from "@Application/DTOs/request/auth.req";
+import { ILoginResponse, IRefreshTokenResponse, ISignUpResponse } from "@Application/DTOs/response/auth.res";
 import { User } from "@Domain/entities/User";
 import { RequestBody } from "@Shared/types";
 

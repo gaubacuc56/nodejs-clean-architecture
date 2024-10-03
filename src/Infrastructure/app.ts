@@ -4,7 +4,7 @@ import { config } from "./config";
 import Server from "@Infrastructure/server/express";
 import { errorMiddleware } from "@Presentation/middlewares/error";
 import { configureRoutes } from "@Presentation/routes";
-import { AppDataSource } from "./database/typeorm";
+import { AppDataSource } from "./database/data-source";
 
 const app = express();
 

@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Task } from './Task';
 import { UserPersonalInfo } from './UserPersonalInfo';
-import { BaseSoftDelete } from '@Infrastructure/database/typeorm/base-entity/base';
+import { BaseSoftDelete } from '@Domain/common/base-entity/base';
 
 
 enum Role {

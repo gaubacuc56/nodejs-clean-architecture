@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 
 import { RequestBody, ResponseBody } from "@Shared/types";
 import {
@@ -7,9 +6,10 @@ import {
     IForgotPasswordRequest,
     IResetPasswordRequest,
     IChangePasswordRequest,
-} from "@Application/dtos/request/auth.req";
+} from "@Application/DTOs/request/auth.req";
 import { IAuthService } from "@Application/features/auth/auth.interface";
 import { asyncHandler } from "@Infrastructure/server/asyncHandler";
+import { User } from "@Domain/entities/User";
 
 export class AuthController {
     constructor(private readonly authService: IAuthService) { }

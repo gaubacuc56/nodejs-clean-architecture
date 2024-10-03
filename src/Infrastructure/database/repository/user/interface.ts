@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { User } from "@Domain/entities/User";
 
 export interface IUserRepository {
     findByEmail(email: string): Promise<User | null>;
@@ -11,8 +11,8 @@ export interface IUserRepository {
     }): Promise<User>;
     updateResetKey(
         id: string,
-        resetKey: string | null,
-        resetKeyExpired: Date | null
+        resetKey: string | undefined,
+        resetKeyExpired: Date | undefined
     ): Promise<void>;
 
     changePassword(id: string, password: string): Promise<void>;

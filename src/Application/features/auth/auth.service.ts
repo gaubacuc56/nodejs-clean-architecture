@@ -5,7 +5,7 @@ import {
     IForgotPasswordRequest,
     IResetPasswordRequest,
     IChangePasswordRequest,
-} from "@Application/dtos/request/auth.req";
+} from "@Application/DTOs/request/auth.req";
 import {
     generateAccessToken,
     generateRefreshToken,
@@ -22,9 +22,9 @@ import crypto from "crypto";
 import { config } from "@Infrastructure/config";
 import { IAuthService } from "./auth.interface";
 import { IUserRepository } from "@Infrastructure/database/repository/user/interface";
-import { pick } from "@Application/utils/pick";
 import { ISignUpResponse } from "@Application/DTOs/response/auth.res";
 import { User } from "@Domain/entities/User";
+import { Mapper } from "@Application/utils/mapper";
 
 export class AuthService implements IAuthService {
     constructor(private readonly userRepository: IUserRepository) { }
@@ -58,7 +58,7 @@ export class AuthService implements IAuthService {
         });
 
         // Only return ISignUpResponse properties
-        const res = pick(user, new Array<keyof ISignUpResponse>());
+        const res = Mapper<ISignUpResponse>(user);
         return res;
     }
 
@@ -121,7 +121,7 @@ export class AuthService implements IAuthService {
             user.id,
             hashSync(newPassword, 10)
         );
-        await this.userRepository.updateResetKey(user.id, null, null);
+        await this.userRepository.updateResetKey(user.id, undefined, undefined);
 
         return { message: "Password reset successful" };
     }

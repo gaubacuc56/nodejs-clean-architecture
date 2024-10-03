@@ -12,10 +12,10 @@
         "lint:fix": "eslint . --ext .ts --fix",
         "docker:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build",
         "docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
-        "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/Infrastructure/database/typeorm/index.ts",
-        "migration:generate": "npm run typeorm migration:generate -- -d ./src/Infrastructure/database/typeorm/migrations",
-        "migration:run": "npm run typeorm migration:run ./src/Infrastructure/database/typeorm/migrations",
-        "migration:revert": "npm run typeorm migration:revert ./src/Infrastructure/database/typeorm/migrations"
+        "typeorm": "typeorm-ts-node-commonjs -d src/Infrastructure/database/data-source/index.ts",
+        "db:generate": "node scripts/create-migration",
+        "db:apply": "npm run typeorm migration:run",
+        "db:revert": "npm run typeorm migration:revert"
     },
     "keywords": [],
     "author": "",

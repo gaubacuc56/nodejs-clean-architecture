@@ -11,7 +11,6 @@ class AuthRoutes extends AsyncRoute {
 
   constructor() {
     super()
-    // Dependency injection of services
     const authService = serviceLocator.getAuthService();
     this.authController = this.CatchAsync(new AuthController(authService));
     this.intializeRoutes();

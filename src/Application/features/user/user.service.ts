@@ -1,8 +1,8 @@
 import { IUserRepository } from "@Infrastructure/database/repository/user/interface";
-import { IFindUserByIdRequest } from "@Application/dtos/request/user.req";
-import { IUserService } from "./user.interface";
+import { IFindUserByIdRequest } from "@Application/DTOs/request/user.req";
 import { IFindUserResponse } from "@Application/DTOs/response/user.res";
-import { pick } from "@Application/utils/pick";
+import { IUserService } from "./user.interface";
+import { Mapper } from "@Application/utils/mapper";
 
 export class UserService implements IUserService {
     constructor(private readonly userRepository: IUserRepository) { }
@@ -11,7 +11,7 @@ export class UserService implements IUserService {
         const { id } = req;
         const user = await this.userRepository.findById(id);
         if (!user) return null;
-        const res = pick(user, new Array<keyof IFindUserResponse>());
+        const res = Mapper<IFindUserResponse>(user)
         return res;
     }
 }

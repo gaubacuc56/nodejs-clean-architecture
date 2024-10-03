@@ -1,19 +1,29 @@
-import { prismaClient } from "@Infrastructure/database/prisma";
+import { MoreThanOrEqual, Repository } from 'typeorm'
+import { AppRepository } from "@Infrastructure/database/data-source";
+import { User } from "@Domain/entities/User";
 import { IUserRepository } from "./interface";
-
 export class UserRepository implements IUserRepository {
+  private userRepository: Repository<User>;
+
+  constructor() {
+    this.userRepository = AppRepository(User)
+  }
+
   public async findByEmail(email: string) {
-    return await prismaClient.user.findFirst({ where: { email } });
+    return await this.userRepository.findOne({ where: { email } });
   }
 
   public async findByResetKey(resetKey: string) {
-    return await prismaClient.user.findFirst({
-      where: { resetKey, resetKeyExpired: { gte: new Date() } },
+    return await this.userRepository.findOne({
+      where: {
+        resetKey,
+        resetKeyExpired: MoreThanOrEqual(new Date()),
+      },
     });
   }
 
   public async findById(id: string) {
-    return await prismaClient.user.findFirst({ where: { id } });
+    return await this.userRepository.findOne({ where: { id } });
   }
 
   public async createUser(data: {
@@ -21,24 +31,19 @@ export class UserRepository implements IUserRepository {
     email: string;
     name: string;
   }) {
-    return await prismaClient.user.create({ data });
+    const newUser = this.userRepository.create(data);
+    return await this.userRepository.save(newUser);
   }
 
   public async updateResetKey(
     id: string,
-    resetKey: string | null,
-    resetKeyExpired: Date | null
+    resetKey: string | undefined,
+    resetKeyExpired: Date | undefined
   ) {
-    await prismaClient.user.update({
-      where: { id },
-      data: { resetKey, resetKeyExpired },
-    });
+    await this.userRepository.update(id, { resetKey, resetKeyExpired });
   }
 
   public async changePassword(id: string, password: string) {
-    await prismaClient.user.update({
-      where: { id },
-      data: { password },
-    });
+    await this.userRepository.update(id, { password });
   }
 }

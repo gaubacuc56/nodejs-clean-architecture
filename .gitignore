@@ -1,6 +1,7 @@
 node_modules
 key
 build
+scripts
 .env.production
 .env.development
 .env.local

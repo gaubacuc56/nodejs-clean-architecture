@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 import { User } from './User';
 import { SubTask } from './SubTask';
-import { BaseSoftDelete } from '@Infrastructure/database/typeorm/base-entity/base';
+import { BaseSoftDelete } from '@Domain/common/base-entity/base';
 
 export enum TASK_STATUS {
     TODO,

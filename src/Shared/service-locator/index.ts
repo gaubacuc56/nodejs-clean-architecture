@@ -1,4 +1,4 @@
-import { AuthService } from "@Application/features/auth/auth.service";
+import { AuthService } from "@Application/features/auth/service";
 import { UserService } from "@Application/features/user/user.service";
 import { UserRepository } from "@Infrastructure/database/repository/user";
 

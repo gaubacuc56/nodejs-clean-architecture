@@ -1,6 +1,6 @@
-import { IFindUserByIdRequest } from "@Application/DTOs/request/user.req";
-import { IFindUserResponse } from "@Application/DTOs/response/user.res";
+import { IFindUserResponse } from "@Application/DTOs/response/user";
+import { Result } from "@Domain/result";
 
 export interface IUserService {
-    findById(req: IFindUserByIdRequest): Promise<IFindUserResponse | null>;
+    findById(req: { id: string }): Promise<Result<IFindUserResponse | null>>;
 }

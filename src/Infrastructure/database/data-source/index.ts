@@ -15,6 +15,6 @@ export const AppDataSource = new DataSource({
     subscribers: [],
 })
 
-export const  AppRepository = <T extends ObjectLiteral>(entity: { new(): T }): Repository<T> => {
+export const AppRepository = <T extends ObjectLiteral>(entity: { new(): T }): Repository<T> => {
     return AppDataSource.getRepository(entity);
 };

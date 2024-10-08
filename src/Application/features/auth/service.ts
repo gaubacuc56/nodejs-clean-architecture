@@ -5,7 +5,7 @@ import {
     IForgotPasswordRequest,
     IResetPasswordRequest,
     IChangePasswordRequest,
-} from "@Application/DTOs/request/auth.req";
+} from "@Application/DTOs/request/auth";
 import {
     generateAccessToken,
     generateRefreshToken,
@@ -20,11 +20,12 @@ import { RequestBody } from "@Shared/types";
 import { compareSync, hashSync } from "bcrypt";
 import crypto from "crypto";
 import { config } from "@Infrastructure/config";
-import { IAuthService } from "./auth.interface";
+import { IAuthService } from "./interface";
 import { IUserRepository } from "@Infrastructure/database/repository/user/interface";
-import { ISignUpResponse } from "@Application/DTOs/response/auth.res";
+import { ISignUpResponse } from "@Application/DTOs/response/auth";
 import { User } from "@Domain/entities/User";
-import { Mapper } from "@Application/utils/mapper";
+import { Result } from "@Domain/result";
+import { Mapper } from "@Infrastructure/mapper";
 
 export class AuthService implements IAuthService {
     constructor(private readonly userRepository: IUserRepository) { }
@@ -43,7 +44,9 @@ export class AuthService implements IAuthService {
 
             const token = await generateAccessToken(user.id);
             const refreshToken = await generateRefreshToken(user.id);
-            return { token, refreshToken };
+            return new Result({
+                data: { token, refreshToken }
+            });
         }
     }
 
@@ -57,9 +60,9 @@ export class AuthService implements IAuthService {
             password: hashSync(req.password, 10),
         });
 
-        // Only return ISignUpResponse properties
-        const res = Mapper<ISignUpResponse>(user);
-        return res;
+        return new Result({
+            data: Mapper(ISignUpResponse, user)
+        });
     }
 
     public async refreshToken(req: RequestBody<User>) {
@@ -73,7 +76,9 @@ export class AuthService implements IAuthService {
         const token = await generateAccessToken(req.body.id);
 
         const refreshToken = await generateRefreshToken(req.body.id);
-        return { token, refreshToken };
+        return new Result({
+            data: { token, refreshToken }
+        });
     }
 
     public async forgotPassword(req: IForgotPasswordRequest) {
@@ -100,7 +105,9 @@ export class AuthService implements IAuthService {
             subject: "Reset your password", // Subject line
             html: `<p>Follow this link to reset your password: \n ${resetUrl}</p>`, // html body
         });
-        return { message: "Password reset email sent" };
+        return new Result({
+            message: "Password reset email sent"
+        });
     }
 
     public async resetPassword(req: IResetPasswordRequest) {
@@ -122,8 +129,9 @@ export class AuthService implements IAuthService {
             hashSync(newPassword, 10)
         );
         await this.userRepository.updateResetKey(user.id, undefined, undefined);
-
-        return { message: "Password reset successful" };
+        return new Result({
+            message: "Password reset successful"
+        });
     }
 
     public async changePassword(req: IChangePasswordRequest & User) {
@@ -141,6 +149,8 @@ export class AuthService implements IAuthService {
 
         await this.userRepository.changePassword(id, hashSync(newPassword, 10));
 
-        return { message: "Change password successful" };
+        return new Result({
+            message: "Change password successful"
+        });
     }
 }

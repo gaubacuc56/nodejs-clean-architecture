@@ -3,7 +3,7 @@ import { UnauthorizedException } from "@Domain/exceptions/error-handler";
 import { config } from "@Infrastructure/config";
 import { AUTH_ERRORS } from "@Application/common/constant/message";
 import { verifyAuthorizationHeader } from "@Application/utils/jwt";
-import { IFindUserResponse } from "@Application/DTOs/response/user.res";
+import { IFindUserResponse } from "@Application/DTOs/response/user";
 
 import { serviceLocator } from "@Shared/service-locator";
 import { RequestBody } from "@Shared/types";

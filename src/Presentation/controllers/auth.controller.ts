@@ -6,8 +6,8 @@ import {
     IForgotPasswordRequest,
     IResetPasswordRequest,
     IChangePasswordRequest,
-} from "@Application/DTOs/request/auth.req";
-import { IAuthService } from "@Application/features/auth/auth.interface";
+} from "@Application/DTOs/request/auth";
+import { IAuthService } from "@Application/features/auth/interface";
 import { asyncHandler } from "@Infrastructure/server/asyncHandler";
 import { User } from "@Domain/entities/User";
 

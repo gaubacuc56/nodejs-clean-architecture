@@ -7,47 +7,34 @@ import {
 import { User } from './User';
 import { SubTask } from './SubTask';
 import { BaseSoftDelete } from '@Domain/common/base-entity/base';
+import { TASK_PRIORITY, TASK_STATUS } from '@Domain/common/enum/task';
 
-export enum TASK_STATUS {
-    TODO,
-    IN_PROGRESS,
-    FAILED,
-    FINISHED,
-    CLOSED,
-}
-
-export enum TASK_PRIORITY {
-    LOW,
-    MEDIUM,
-    HIGH,
-}
-
-@Entity({ name: 'Task' })
+@Entity({ name: 'task' })
 
 export class Task extends BaseSoftDelete {
     @Column()
-    public title!: string;
+    public title: string;
 
     @Column()
-    public description!: string;
+    public description: string;
 
     @Column({
         type: 'enum',
         enum: TASK_PRIORITY,
         default: TASK_PRIORITY.MEDIUM,
     })
-    public priority!: TASK_PRIORITY;
+    public priority: TASK_PRIORITY;
 
     @Column({
         type: 'enum',
         enum: TASK_STATUS,
         default: TASK_STATUS.TODO,
     })
-    public status!: TASK_STATUS;
+    public status: TASK_STATUS;
 
     @ManyToMany(() => User, (user) => user.tasks)
-    public Users!: User[];
+    public Users: User[];
 
     @OneToMany(() => SubTask, (subTask) => subTask.task)
-    public SubTasks!: SubTask[];
+    public SubTasks: SubTask[];
 }

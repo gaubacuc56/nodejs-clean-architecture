@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express from "express";
-import { config } from "./config";
+import 'reflect-metadata';
 import Server from "@Infrastructure/server/express";
 import { errorMiddleware } from "@Presentation/middlewares/error";
 import { configureRoutes } from "@Presentation/routes";
 import { AppDataSource } from "./database/data-source";
-
+import { config } from "./config";
 const app = express();
 
 AppDataSource.initialize()

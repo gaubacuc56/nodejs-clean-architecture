@@ -8,30 +8,24 @@ import {
 import { Task } from './Task';
 import { UserPersonalInfo } from './UserPersonalInfo';
 import { BaseSoftDelete } from '@Domain/common/base-entity/base';
+import { Role } from '@Domain/common/enum/user';
 
-
-enum Role {
-    SUPER_ADMIN,
-    ADMIN,
-    USER,
-}
-
-@Entity({ name: 'User' })
+@Entity({ name: 'user' })
 @Unique(['email'])
 export class User extends BaseSoftDelete {
     @Column()
-    public name!: string;
+    public name: string;
 
     @Column()
-    public email!: string;
+    public email: string;
 
     @Column()
-    public password!: string;
+    public password: string;
 
-    @Column({ name: 'reset_key' })
+    @Column({ name: 'reset_key', nullable: true })
     public resetKey?: string;
 
-    @Column({ name: 'reset_key_expired', unique: true })
+    @Column({ name: 'reset_key_expired', nullable: true })
     public resetKeyExpired?: Date;
 
     @Column({
@@ -39,10 +33,10 @@ export class User extends BaseSoftDelete {
         enum: Role,
         default: Role.USER,
     })
-    public role!: Role;
+    public role: Role;
 
     @OneToMany(() => Task, (task) => task.Users)
-    public tasks!: Task[];
+    public tasks: Task[];
 
     @OneToOne(() => UserPersonalInfo, (personalInfo) => personalInfo.user, { cascade: true })
     public personalInfo?: UserPersonalInfo;

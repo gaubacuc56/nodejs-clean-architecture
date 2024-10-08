@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
-    "strictPropertyInitialization": true,
+    "strictPropertyInitialization": false,
     "lib": [
       "ES5",
       "ES6",
@@ -26,6 +26,10 @@
         "./src/*"
       ]
     },
+    "typeRoots": [
+      "node_modules/@types",
+      "../src/typings.d.ts"
+    ],
   },
   "include": [
     "src/**/*.ts"
@@ -37,5 +41,5 @@
     "require": [
       "tsconfig-paths/register"
     ]
-  },
+  }
 }
